@@ -1,0 +1,14 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:k6": "tsc -p tsconfig.k6.json",
+    "k6:auth": "k6 run dist/validate-token.test.js"
+  },
+  "devDependencies": {
+    "@types/k6": "^0.43.3",
+    "@types/node": "22.15.18",
+    "typescript": "^5.3.0"
+  }
+}

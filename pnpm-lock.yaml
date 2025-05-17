@@ -131,6 +131,18 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
+  tests:
+    devDependencies:
+      '@types/k6':
+        specifier: ^0.43.3
+        version: 0.43.3
+      '@types/node':
+        specifier: 22.15.18
+        version: 22.15.18
+      typescript:
+        specifier: ^5.3.0
+        version: 5.8.3
+
 packages:
 
   '@ampproject/remapping@2.3.0':
@@ -1033,6 +1045,9 @@ packages:
 
   '@types/jsonwebtoken@9.0.9':
     resolution: {integrity: sha512-uoe+GxEuHbvy12OUQct2X9JenKM3qAscquYymuQN4fMWG9DBQtykrQEFcAbVACF7qaLw9BePSodUL0kquqBJpQ==}
+
+  '@types/k6@0.43.3':
+    resolution: {integrity: sha512-iNpIu2lKq6iYh6hMM7oJ2K1iDDq8kjPT+rXvfGVqgoiBd+F3j3jWJ+Nwc1MJutiR+TitFHk/DzzUzDk01LKP7Q==}
 
   '@types/memcached@2.2.10':
     resolution: {integrity: sha512-AM9smvZN55Gzs2wRrqeMHVP7KE8KWgCJO/XL5yCly2xF6EKa4YlbpK+cLSAH4NG/Ah64HrlegmGqW8kYws7Vxg==}
@@ -3667,6 +3682,8 @@ snapshots:
     dependencies:
       '@types/ms': 2.1.0
       '@types/node': 22.15.18
+
+  '@types/k6@0.43.3': {}
 
   '@types/memcached@2.2.10':
     dependencies:

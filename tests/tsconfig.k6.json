@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "strict": true,
+    "types": ["@types/k6"],
+    "esModuleInterop": true,
+    "outDir": "dist"
+  },
+  "include": ["**/*.ts"]
+}
