@@ -17,12 +17,12 @@ export class BadRequestError extends ApiError {
 
 export class NotFoundError extends ApiError {
   constructor(message: string) {
-    super(message, 404);
+    super(message, ErrorCodes.NOT_FOUND);
   }
 }
 
 export class UnauthorizedError extends ApiError {
   constructor(message: string) {
-    super(message, 401);
+    super(message, ErrorCodes.UNAUTHORIZED);
   }
 }

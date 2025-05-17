@@ -9,7 +9,3 @@ export function authRouters(serverApp: FastifyInstance) {
   serverApp.post("/login", loginUserController);
   serverApp.get("/validate-token", validateTokenController);
 }
-
-export function userRouters(serverApp: FastifyInstance) {
-  serverApp.delete("/",  deleteUserController);
-}

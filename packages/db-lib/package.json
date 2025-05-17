@@ -4,7 +4,9 @@
   "main": "src/client.ts",
   "types": "src/client.ts",
   "scripts": {
-    "generate": "prisma generate"
+    "postinstall": "prisma generate",
+    "generate": "prisma generate",
+    "build": "tsc && prisma generate "
   },
   "dependencies": {
     "@types/node": "22.15.18",

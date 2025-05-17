@@ -2,9 +2,7 @@ import { initalizeTracing } from "./lib/telemetry/tracing";
 initalizeTracing();
 
 import Fastify from "fastify";
-import { authRouters, userRouters } from "./routers";
-import { context, trace } from "@opentelemetry/api";
-import { handleSendPayload } from "./lib/telemetry/payload";
+import { authRouters } from "./routers";
 
 const app = Fastify({
   logger: true,
@@ -13,11 +11,6 @@ const app = Fastify({
 app.register(authRouters, {
   prefix: "/auth",
 });
-
-app.register(userRouters, {
-  prefix: "/user",
-});
-
 
 const start = async () => {
   try {

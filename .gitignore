@@ -25,6 +25,6 @@ pnpm-debug.log*
 *.sw?
 */*/prisma/generated
 */.env
-
+*/*/*/*/.env.test
 .env
 
