@@ -1,0 +1,8 @@
+{
+    "name": "dwitch",
+    "private": true,
+    "devDependencies": {
+      "typescript": "5.8.3"
+    }
+  }
+  

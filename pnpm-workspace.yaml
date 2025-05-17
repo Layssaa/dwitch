@@ -1,0 +1,7 @@
+packages:
+  - "front"
+  - "auth"
+  - "channels"
+  - "user"
+  - "docs"
+  - "packages/*"

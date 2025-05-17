@@ -1,0 +1,45 @@
+{
+  "dependencies": {
+    "@dwitch/db-client": "workspace:*",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.59.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.201.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.201.0",
+    "@opentelemetry/instrumentation": "^0.201.0",
+    "@opentelemetry/instrumentation-express": "^0.50.0",
+    "@opentelemetry/instrumentation-http": "^0.201.0",
+    "@opentelemetry/propagator-jaeger": "^2.0.1",
+    "@opentelemetry/resources": "^2.0.1",
+    "@opentelemetry/sdk-node": "^0.201.0",
+    "@opentelemetry/sdk-trace-base": "^2.0.1",
+    "@opentelemetry/sdk-trace-node": "^2.0.1",
+    "@opentelemetry/semantic-conventions": "^1.33.0",
+    "@prisma/client": "6.8.2",
+    "bcrypt": "6.0.0",
+    "fastify": "5.3.3",
+    "fastify-cli": "7.4.0",
+    "jsonwebtoken": "9.0.2",
+    "opentelemetry-instrumentation-express": "^0.41.0",
+    "zod": "3.24.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "22.15.18",
+    "prisma": "6.8.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3"
+  },
+  "name": "auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

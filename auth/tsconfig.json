@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true
+  },
+  "baseUrl": ".",
+  "paths": {
+    "@dwitch/db-client": ["packages/db-client/src"],
+    "@validators/*": ["src/validators/*"]
+  },
+  "include": ["src"],
+  "exclude": ["dist"]
+}
