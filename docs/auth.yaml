@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Auth Service
+  version: 1.0.1
+  description: API de autenticação; login, cadastro e validação de token por outros serviços.
+paths:
+  /auth/create:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                repeatPassword:
+                  type: string
+      responses:
+        "201":
+          description: User created successfully
+        "400":
+          description: A User with the specified EMAIL already exists or Password doesn't match.
+        "401":
+          description: Invalid Data, probably the password dosen't match.
+        "500":
+          description: Internal Server Error.
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Login Successful
+        "404":
+          description: A user with the specified ID was not found.
+        "400":
+          description: Invalid Data, probably the password dosen't match.
+        "500":
+          description: Internal Server Error.
+  /auth/validate-token:
+    get:
+      summary: Validate Token JWT
+      security:
+        - bearerAuth: []
+
+    responses:
+      "200":
+        description: Valid Token
+      "401":
+        description: Unauthorized - Invalid Token or Empty Token .
+      "400":
+        description: Invalid Data, probably the password dosen't match.
+      "500":
+        description: Internal Server Error.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
