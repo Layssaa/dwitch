@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../prisma/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String
+  password String
+
+  subcriptions   Channel[] @relation("UserSubscriptions")
+  channels_owner Channel[] @relation("UserOwnsChannels")
+
+  createdAt DateTime
+  deletedAt DateTime?
+  updatedAt DateTime? @updatedAt
+}
+
+model Channel {
+  id    String @id @default(uuid())
+  name  String
+  about String
+
+  owner    User   @relation("UserOwnsChannels", fields: [owner_id], references: [id])
+  owner_id String
+
+  subscribes User[]      @relation("UserSubscriptions")
+  broadcasts Broadcast[]
+
+  createdAt DateTime
+  deletedAt DateTime?
+  updatedAt DateTime? @updatedAt
+}
+
+model Broadcast {
+  id String @id @default(uuid())
+
+  logs BroadcastLogs[]
+
+  channel   Channel @relation(fields: [channelId], references: [id])
+  channelId String
+
+  createdAt DateTime
+  deletedAt DateTime?
+  updatedAt DateTime? @updatedAt
+}
+
+model BroadcastLogs {
+  id String @id @default(uuid())
+
+  status BroadcastLogsStatus
+
+  broadcast   Broadcast @relation(fields: [broadcastId], references: [id])
+  broadcastId String
+
+  createdAt DateTime
+}
+
+enum BroadcastLogsStatus {
+  LIVE
+  COMPLETED
+  FAILED
+  INACTIVE
+}
