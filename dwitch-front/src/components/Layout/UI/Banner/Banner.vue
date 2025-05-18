@@ -10,7 +10,7 @@
 
     <v-btn class="position-absolute bottom-16 left-16 text-white " color="primary" style="bottom: 2rem; left: 2rem;" variant="tonal">
       <!-- <v-icon color="primary" icon="mid-access-point" /> -->
-      ASSISTIR AO VIVO
+      {{ $t('message.channels.toWatchLive') }}
     </v-btn>
   </div>
 </template>

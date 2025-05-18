@@ -30,7 +30,7 @@ const dark: ThemeDefinition = {
   colors: {
     background: '#000B1A',
     surface: '#01122A',
-    toggleColor: '#0A2243',
+    toggleColor: '#01122A',
     primary: '#F23545',
     'primary-darken-1': '#F23545',
     secondary: '#51A2FF',

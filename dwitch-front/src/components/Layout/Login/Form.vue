@@ -3,6 +3,9 @@
   import { useRouter } from 'vue-router'
   import { apiAuth } from '@/api/axios'
   import Button from '../UI/Button/Button.vue'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 
   const router = useRouter()
 
@@ -13,12 +16,12 @@
   const hasError = ref(false)
 
   const emailRules = [
-    (value: string) => !!value || 'E-mail é obrigatório.',
-    (value: string) => /.+@.+\..+/.test(value) || 'Informe um e-mail válido.',
+    (value: string) => !!value || t('message.login.errorMessages.emptyEmail'),
+    (value: string) => /.+@.+\..+/.test(value) || t('message.login.errorMessages.invalidEmail'),
   ]
 
   const passwordRules = [
-    (value: string) => !!value || 'Informe uma senha.',
+    (value: string) => !!value || t('message.login.errorMessages.password'),
   ]
   const submit = async () => {
     if (!valid.value) return
@@ -49,7 +52,7 @@
       <v-text-field
         v-model="email"
         class="ma-2"
-        label="Email"
+        :label="t('message.login.email')"
         required
         :rules="emailRules"
         variant="outlined"
@@ -58,7 +61,7 @@
       <v-text-field
         v-model="password"
         class="ma-2"
-        label="Senha"
+        :label="t('message.login.password')"
         required
         :rules="passwordRules"
         type="password"
@@ -66,14 +69,14 @@
       />
 
       <p v-if="hasError" class="my-6 text-error">
-        <b>* Não foi possível realizar o login, verifique suas credenciais *</b>
+        <b>*  {{ $t('message.login.errorMessages.default') }} *</b>
       </p>
 
       <Button
         color="primary"
         :loading="loading"
         size="large"
-        text="Entrar"
+        :text="t('message.login.login')"
         type="submit"
       />
     </v-form>

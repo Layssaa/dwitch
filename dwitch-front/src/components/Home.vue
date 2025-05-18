@@ -13,17 +13,17 @@
 
     <v-main class="mx-4">
       <p class="text-lg-h4 text-primary mb-8">
-        Ao vivo na Dwitch
+        {{ $t('message.inLiveTitle') }}
       </p>
 
       <div class="d-flex flex-row align-start ga-4 mb-8">
-        <LiveCard about="about" name="name" />
-        <LiveCard about="about" name="name" />
-        <LiveCard about="about" name="name" />
+        <LiveCard id="mockid" about="about" name="name" />
+        <LiveCard id="mockid" about="about" name="name" />
+        <LiveCard id="mockid" about="about" name="name" />
       </div>
 
       <p class="text-lg-h5 text-title mb-8">
-        Canais que talvez você goste
+        {{ $t('message.channelsWouldYouLike') }}
       </p>
 
       <v-slide-group
@@ -31,7 +31,7 @@
         show-arrows
       >
         <v-slide-group-item v-for="n in 10" :key="n">
-          <ChannelCard />
+          <ChannelCard id="mockid" about="loren ipsum lorem lorem" name="name" :subscribers="[]" />
         </v-slide-group-item>
       </v-slide-group>
     </v-main>

@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
+  const props = defineProps<{
+    name: string
+    about: string
+    id: string | number
+  }>()
+</script>
+
 <template>
   <v-card
     color="surface"
@@ -10,17 +22,17 @@
     />
 
     <v-card-title>
-      {{ name }}
+      {{ props.name }}
     </v-card-title>
 
     <v-card-subtitle>
-      {{ about }}
+      {{ props.about }}
     </v-card-subtitle>
 
     <v-card-actions>
       <v-btn
         color="primary"
-        text="See More"
+        :text="t('message.channels.seeMore')"
       />
 
       <v-spacer />
@@ -29,8 +41,3 @@
 
   </v-card>
 </template>
-<script lang="ts">
-  export default {
-    props: ['name', 'about', 'id'],
-  }
-</script>

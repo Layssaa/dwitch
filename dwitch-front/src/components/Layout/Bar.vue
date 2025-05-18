@@ -3,27 +3,19 @@
   import ToggleTheme from './UI/Toggle/Toggle.vue';
   import Avatar from './Avatar.vue';
   import Button from './UI/Button/Button.vue';
+  import LangSelect from './UI/Lang/LangSelect.vue';
+
+  const isAuthenticated = localStorage.getItem('token')
+
 </script>
 
 <template>
   <v-app-bar class="ps-4 pe-4 d-flex" color="background" :elevation="0" height="72">
     <Image />
     <v-spacer />
-
-    <!--  adcicionarn abaixo
-    <v-text-field
-      class="mb-4 border "
-      density="compact"
-      flat
-      hide-details
-      prepend-inner-icon="mdi-magnify"
-      variant="solo-filled"
-    /> -->
-
-    <v-spacer />
-
+    <LangSelect />
     <ToggleTheme />
-    <Button color="primary" text="Entrar" />
-    <Avatar />
+    <Button v-if="!isAuthenticated" color="primary" text="Entrar" />
+    <Avatar v-if="isAuthenticated" />
   </v-app-bar>
 </template>

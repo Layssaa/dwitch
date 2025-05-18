@@ -3,6 +3,7 @@
   import { useRouter } from 'vue-router'
   import { apiAuth } from '@/api/axios' // ajuste esse import para onde estiver sua instância do axios
   import Button from '../UI/Button/Button.vue'
+  import { useI18n } from 'vue-i18n'
 
   const email = ref('')
   const password = ref('')
@@ -13,23 +14,24 @@
   const valid = ref(false)
 
   const router = useRouter()
+  const { t } = useI18n()
 
   const nameRules = [
-    (value: string) => !!value || 'Informe um nome.',
+    (value: string) => !!value || t('message.register.errorMessages.emptyName'),
   ]
 
   const passwordRules = [
-    (value: string) => !!value || 'Informe uma senha.',
+    (value: string) => !!value || t('message.register.errorMessages.password'),
   ]
 
   const repeatPasswordRules = [
-    (value: string) => !!value || 'Repita a senha.',
-    (value: string) => value === password.value || 'As senhas devem ser iguais.',
+    (value: string) => !!value || t('message.register.errorMessages.repeatPassword'),
+    (value: string) => value === password.value || t('message.register.errorMessages.passwordNotMatch'),
   ]
 
   const emailRules = [
-    (value: string) => !!value || 'Informe um email.',
-    (value: string) => /.+@.+\..+/.test(value) || 'Informe um email válido.',
+    (value: string) => !!value || t('message.register.errorMessages.emptyEmail'),
+    (value: string) => /.+@.+\..+/.test(value) || t('message.register.errorMessages.invalidEmail'),
   ]
 
   const submit = async () => {
@@ -51,7 +53,7 @@
       localStorage.setItem('token', response.data.token)
       router.push({ name: '/' })
     } catch (err) {
-      console.error('Erro ao fazer login', err)
+      console.error('Erro ao fazer o cadastro', err)
       hasError.value = true
     } finally {
       loading.value = false
@@ -65,7 +67,7 @@
       <v-text-field
         v-model="name"
         class="mb-4"
-        label="Nome"
+        :label="t('message.register.name')"
         required
         :rules="nameRules"
         variant="outlined"
@@ -74,7 +76,7 @@
       <v-text-field
         v-model="email"
         class="mb-4"
-        label="Email"
+        :label="t('message.register.email')"
         required
         :rules="emailRules"
         variant="outlined"
@@ -83,7 +85,7 @@
       <v-text-field
         v-model="password"
         class="mb-4"
-        label="Senha"
+        :label="t('message.register.password')"
         required
         :rules="passwordRules"
         type="password"
@@ -93,20 +95,20 @@
       <v-text-field
         v-model="repeatPassword"
         class="mb-4"
-        label="Repetir Senha"
+        :label="t('message.register.repeatPassword')"
         required
         :rules="repeatPasswordRules"
         type="password"
         variant="outlined"
       />
 
-      <div v-if="hasError" class="text-error mb-4">Ocorreu um erro ao fazer o cadastro.</div>
+      <div v-if="hasError" class="text-error mb-4"> {{ $t('message.register.errorMessages.default') }} </div>
 
       <Button
         color="primary"
         :loading="loading"
         size="large"
-        text="Entrar"
+        :text="t('message.register.signUp')"
         type="submit"
       />
     </v-form>

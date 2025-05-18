@@ -20,6 +20,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./components/Home.vue')['default']
     Home: typeof import('./components/Home.vue')['default']
     Image: typeof import('./components/Layout/UI/Image/Logo.vue')['default']
+    LangSelect: typeof import('./components/Layout/UI/Lang/LangSelect.vue')['default']
     LiveCard: typeof import('./components/Layout/LiveCard.vue')['default']
     Login: typeof import('./components/Login.vue')['default']
     Logo: typeof import('./components/Layout/UI/Image/Logo.vue')['default']
@@ -28,5 +29,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Sheet: typeof import('./components/Layout/UI/Sheet/Sheet.vue')['default']
     Toggle: typeof import('./components/Layout/UI/Toggle/Toggle.vue')['default']
+    Unlogged: typeof import('./components/Layout/UI/Bar/Unlogged.vue')['default']
   }
 }

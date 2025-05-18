@@ -1,7 +1,8 @@
 <template>
   <v-switch
-    class="me-2"
-    color="toggleColor"
+    base-color="primary"
+    class="mx-2"
+    color="primary"
     hide-details
     inset
     :label="theme.global.current.value.dark ? 'Dark' : 'Light'"
