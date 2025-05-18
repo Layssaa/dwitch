@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  "baseUrl": ".",
+  "paths": {
+    "@dwitch/db-client": ["packages/db-client/src"],
+    "@dwitch/errors": ["packages/errors/src"],
+    "@validators/*": ["src/validators/*"]
+  },
+  "include": ["src"],
+  "exclude": ["dist"],
+  "files": ["types/fastify.d.ts"]
+}
