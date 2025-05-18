@@ -22,7 +22,7 @@ export async function deleteUserController(
       userIdAuth: userId,
     });
 
-    return rep.status(SuccessCodes.CREATED).send({
+    return rep.status(SuccessCodes.SUCCESS).send({
       message: "User deleted successfully",
     });
   } catch (error) {

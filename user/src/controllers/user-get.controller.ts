@@ -30,7 +30,7 @@ export async function getUserController(
 
     handleSendPayload({ span, payload: response });
 
-    return rep.status(SuccessCodes.CREATED).send(response);
+    return rep.status(SuccessCodes.SUCCESS).send(response);
   } catch (error) {
     console.error(error);
     const errorHandled = handlerError(error as Error, "ErrorToGetUser");

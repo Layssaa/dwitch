@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Auth Service
   version: 1.0.1
-  description: API de autenticação; login, cadastro e validação de token por outros serviços.
+  description: Authentication API; login, registration and token validation by other services.
 paths:
   /auth/create:
     post:

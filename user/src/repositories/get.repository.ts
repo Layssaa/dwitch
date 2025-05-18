@@ -9,5 +9,8 @@ export function findUserRepositoryById({ id }: IFindUserById) {
       id,
       deletedAt: null,
     },
+    omit: {
+      password: true,
+    }
   });
 }

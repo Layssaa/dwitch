@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: User Service
+  version: 1.0.2
+  description: API to manipulate user data.
+
+paths:
+  /user:
+    get:
+      summary: Get user information
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Get user successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  deletedAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+        "401":
+          description: Unauthorized - Invalid Token or Empty Token.
+        "404":
+          description: Not Found.
+        "500":
+          description: Internal Server Error.
+
+  /user/delete/{id}:
+    delete:
+      summary: Delete user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User deleted successfully
+        "401":
+          description: Unauthorized - Invalid Token or Empty Token.
+        "404":
+          description: Not Found.
+        "500":
+          description: Internal Server Error.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
