@@ -23,6 +23,7 @@ declare module 'vue' {
     LiveCard: typeof import('./components/Layout/LiveCard.vue')['default']
     Login: typeof import('./components/Login.vue')['default']
     Logo: typeof import('./components/Layout/UI/Image/Logo.vue')['default']
+    Register: typeof import('./components/Register.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sheet: typeof import('./components/Layout/UI/Sheet/Sheet.vue')['default']

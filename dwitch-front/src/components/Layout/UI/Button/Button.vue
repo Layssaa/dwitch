@@ -2,6 +2,7 @@
   <v-btn
     class="text-white mx-4"
     :color="color"
+    :loading="loading"
     :size="size ? size : 'default'"
     :type="type ? type : 'button'"
     variant="tonal"
@@ -11,6 +12,6 @@
 
 <script lang="ts">
   export default {
-    props: ['color', 'text', 'size', 'type'],
+    props: ['color', 'text', 'size', 'type', 'loading'],
   };
 </script>
