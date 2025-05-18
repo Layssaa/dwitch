@@ -17,6 +17,7 @@ export const options = {
 
 const BASE_URL = __ENV.BASE_URL ?? "http://localhost:3000";
 
+/** TODO: ESSES TOKENS NÃO PODE SER FIXOS, POIS EXPIRAM */
 const VALID_TOKEN = {
   token:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyMzIwQGdtYWlsLmNvbSIsInVzZXJJZCI6IjkyN2M2MDk3LTVhN2ItNDU2Yy1hZWE5LThkMGU2NmY1NTNlNSIsImlhdCI6MTc0NzUwNjc2OSwiZXhwIjoxNzQ3NTkzMTY5fQ.N0X4O5E2XuMuhfqgiIu4a9zh7O64VGKAtFwkaOM3o0w",
