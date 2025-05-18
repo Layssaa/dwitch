@@ -19,10 +19,11 @@ export async function validateTokenController(
       throw new UnauthorizedError("Token not found");
     }
 
-    await validateTokenService({ token });
+    const { userId } =await validateTokenService({ token });
 
     const response = {
       message: "User authenticated successfully",
+      userId,
     };
 
     handleSendPayload({ span, payload: response });

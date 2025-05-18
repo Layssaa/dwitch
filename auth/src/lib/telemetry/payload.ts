@@ -10,5 +10,5 @@ export function handleSendPayload({
   attributeIdentify = "http.response_payload",
   payload,
 }: IHandleErrorPayload) {
-  return span?.setAttribute("http.response_payload", JSON.stringify(payload));
+  return span?.setAttribute(attributeIdentify, JSON.stringify(payload));
 }

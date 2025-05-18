@@ -12,6 +12,7 @@
   "baseUrl": ".",
   "paths": {
     "@dwitch/db-client": ["packages/db-client/src"],
+    "@dwitch/errors": ["packages/errors/src"],
     "@validators/*": ["src/validators/*"]
   },
   "include": ["src"],
