@@ -22,6 +22,7 @@ const light: ThemeDefinition = {
     success: '#4CAF50',
     warning: '#FB8C00',
     title: '#000000',
+    tertiary: '#01122A',
   },
 };
 
@@ -40,6 +41,7 @@ const dark: ThemeDefinition = {
     success: '#4CAF50',
     warning: '#FB8C00',
     title: '#ffffff',
+    tertiary: '#ffffff',
   },
 };
 

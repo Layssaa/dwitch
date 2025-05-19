@@ -4,7 +4,7 @@ import verifyAuth from "../plugins/auth";
 
 export function broadcastRouters(serverApp: FastifyInstance) {
   serverApp.post(
-    "/broadcast-init",
+    "/start",
     {
       preHandler: [verifyAuth],
     },

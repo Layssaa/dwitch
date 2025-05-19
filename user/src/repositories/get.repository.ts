@@ -14,3 +14,18 @@ export function findUserRepositoryById({ id }: IFindUserById) {
     }
   });
 }
+
+interface IFindChannelByUserId {
+  userId: string;
+}
+export function findChannelByUserIdRepository({
+  userId,
+}: IFindChannelByUserId) {
+  return dbClient.channel.findFirst({
+    where: {
+      owner_id: userId,
+      deletedAt: null,
+    },
+  });
+}
+

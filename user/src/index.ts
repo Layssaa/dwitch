@@ -10,8 +10,12 @@ const app = Fastify({
   logger: true,
 });
 
+const CLIENT_URL = process.env.CLIENT_URL ?? "http://localhost:3000";
+
+const allowedOrigins = [CLIENT_URL];
+
 app.register(cors, {
-  origin: ["http://localhost:3000"],
+  origin: allowedOrigins,
 });
 
 app.addHook("onRequest", verifyAuth);
@@ -20,10 +24,11 @@ app.register(userRouters, {
   prefix: "/user",
 });
 
+const PORT = (process.env.PORT as unknown as number) ?? 5001 
 const start = async () => {
   try {
-    await app.listen({ port: Number(process.env.PORT) ?? 5001 });
-    console.log("🚀 Server ready at http://localhost:5001");
+    await app.listen({ port: PORT });
+    console.log("🚀 Server ready at ", PORT);
   } catch (err) {
     app.log.error(err);
     process.exit(1);

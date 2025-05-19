@@ -8,6 +8,7 @@ export const en = {
       seeMore: 'See more',
       invite: 'Didn`t find anything? Create a channel and invite your friends!',
       createChannel: 'Create Channel',
+      startBtn: 'Start Live Streaming',
       inputs: {
         channelName: 'Name',
         description: 'Description',
@@ -17,6 +18,11 @@ export const en = {
           emptyName: 'Name is required.',
           emptyDescription: 'Description is required.',
         },
+      },
+      feedbacks: {
+        dontHaveAChannel: 'You dont have a channel, create one before starting a broadcast!',
+        unableToStartTransmission: 'Unable to start transmission',
+        broadcastStarted: 'A broadcast has started! Watch the channel',
       },
     },
     login: {

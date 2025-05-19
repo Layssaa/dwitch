@@ -1,2 +1,5 @@
 export { deleteUserRepository } from "./delete.repository";
-export { findUserRepositoryById } from "./get.repository";
+export {
+  findUserRepositoryById,
+  findChannelByUserIdRepository,
+} from "./get.repository";

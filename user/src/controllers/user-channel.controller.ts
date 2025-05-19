@@ -3,20 +3,24 @@ import { handlerError } from "../error/handler";
 import { SuccessCodes } from "../error/codes";
 import { context, trace } from "@opentelemetry/api";
 import { handleSendPayload } from "../lib/telemetry/payload";
-import { getChannelService } from "../services/get.service";
-import { getChannelValidator } from "../validators/get.validator";
+import { UnauthorizedError } from "../error";
+import { getUserChannelService } from "../services/user-channel.service";
 
-export async function getChannelController(
+export async function getUserChannelController(
   req: FastifyRequest,
   rep: FastifyReply
 ) {
   const span = trace.getSpan(context.active());
 
   try {
-    const data = getChannelValidator.parse(req.params);
+    const userId = req.user?.userId;
 
-    const channel = await getChannelService({
-      channelId: data.channelId,
+    if (!userId) {
+      throw new UnauthorizedError("Not allowed");
+    }
+
+    const channel = await getUserChannelService({
+      userId: userId,
     });
     
     const response = {
@@ -28,7 +32,7 @@ export async function getChannelController(
     return rep.status(SuccessCodes.SUCCESS).send(response);
   } catch (error) {
     console.error(error);
-    const errorHandled = handlerError(error as Error, "ErrorToGetChannel");
+    const errorHandled = handlerError(error as Error, "ErrorToGetUserChannel");
     handleSendPayload({ span, payload: errorHandled });
     return rep.status(errorHandled.statusCode).send(errorHandled);
   }

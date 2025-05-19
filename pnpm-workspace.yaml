@@ -2,6 +2,7 @@ packages:
   - "front"
   - "auth"
   - "channels"
+  - "broadcasts"
   - "user"
   - "docs"
   - "tests"

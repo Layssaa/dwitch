@@ -1,4 +1,7 @@
 import amqp from "amqplib";
+import { EventEmitter } from "events";
+
+export const broadcaster = new EventEmitter();
 
 const rambbitmqServer =
   process.env.RABBITMQ_SERVER_URL ?? "amqp://guest:guest@127.0.0.1:5672";
@@ -28,7 +31,7 @@ export async function publishBroadcast(channel: any, message: object) {
   });
 }
 
-export async function startConsumer(onMessage: (data: any) => void) {
+export async function startConsumer() {
   const { channel } = await createRabbitMQConnection();
   await channel.assertExchange(EXCHANGE, "fanout", { durable: false });
 
@@ -39,10 +42,9 @@ export async function startConsumer(onMessage: (data: any) => void) {
   channel.consume(
     q.queue,
     (msg: any) => {
-      console.log("MESSAGE CONSUMED >>", msg.content.toString());
       if (msg.content) {
         const content = JSON.parse(msg.content.toString());
-        onMessage(content);
+        broadcaster.emit("broadcast-started", content);
       }
     },
     { noAck: true }

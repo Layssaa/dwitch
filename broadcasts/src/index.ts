@@ -1,21 +1,32 @@
 "use strict";
 import fastify from "fastify";
 import ws from "@fastify/websocket";
-import { startConsumer } from "./lib/rabbitmq";
+import { broadcaster, startConsumer } from "./lib/rabbitmq";
 import { broadcastRouters } from "./routers";
+import type WebSocket from "ws";
+import cors from "@fastify/cors";
 
 const app = fastify();
-const clients = new Set<any>();
+const CLIENT_URL = process.env.CLIENT_URL ?? "http://localhost:3000";
+
+const allowedOrigins = [CLIENT_URL];
+
+app.register(cors, {
+  origin: allowedOrigins,
+});
+
+const clients = new Set<WebSocket>();
 
 app.register(ws);
 
-import type { WebSocket } from "ws";
-
 app.register(async (app) => {
   app.get("/ws", { websocket: true }, (connection) => {
-    connection.on("open", () => {
-      clients.add(connection.send);
+    broadcaster.on("broadcast-started", (data) => {
+      connection.send(JSON.stringify({ ...data, status: "broadcast-started" }));
+    });
 
+    connection.on("open", () => {
+      clients.add(connection);
       connection.send("Websocket Connected");
     });
 
@@ -26,25 +37,22 @@ app.register(async (app) => {
 
     connection.on("close", () => {
       connection.send("Websocket Disconnected");
-      clients.delete(connection.send);
+      clients.delete(connection);
     });
   });
 });
 
-app.register(broadcastRouters);
-
-startConsumer((data) => {
-  console.log("SENDING DATA", data);
-
-  for (const client of clients) {
-    client(data).catch(console.error);
-  }
+app.register(broadcastRouters, {
+  prefix: "/broadcasts",
 });
 
+startConsumer();
+
+const PORT = (process.env.PORT as unknown as number) ?? 5003;
 const start = async () => {
   try {
-    await app.listen({ port: 5002 });
-    console.log("🚀 Server ready at http://localhost:5002");
+    await app.listen({ port: PORT });
+    console.log("🚀 Server ready at ", PORT);
   } catch (err) {
     app.log.error(err);
     process.exit(1);

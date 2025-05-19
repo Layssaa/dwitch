@@ -8,6 +8,7 @@ export const pt = {
       seeMore: 'Veja Mais',
       invite: 'Não encontrou nada? Crie um canal e convide seus amigos!',
       createChannel: 'Criar Canal',
+      startBtn: 'Iniciar Transmissão Ao Vivo',
       inputs: {
         channelName: 'Nome do Canal',
         description: 'Descrição',
@@ -17,6 +18,11 @@ export const pt = {
           emptyName: 'Informe um nome.',
           emptyDescription: 'Informe uma descrição.',
         },
+      },
+      feedbacks: {
+        dontHaveAChannel: 'Você não tem um canal, crie um antes de iniciar uma transmissão!',
+        unableToStartTransmission: 'Não foi possível iniciar a transmissão',
+        broadcastStarted: 'Uma transmissão foi iniciada! Assista ao canal',
       },
     },
     login: {

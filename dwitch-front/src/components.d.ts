@@ -33,6 +33,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sheet: typeof import('./components/Layout/UI/Sheet/Sheet.vue')['default']
+    StartLiveStreaming: typeof import('./components/Layout/StartLiveStreaming.vue')['default']
     Toggle: typeof import('./components/Layout/UI/Toggle/Toggle.vue')['default']
     Unlogged: typeof import('./components/Layout/UI/Bar/Unlogged.vue')['default']
   }

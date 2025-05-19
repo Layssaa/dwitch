@@ -13,5 +13,5 @@ export function channelsPublicRouters(serverApp: FastifyInstance) {
 export function channelsPrivateRouters(serverApp: FastifyInstance) {
   serverApp.post("/create", createChannelController);
   serverApp.delete("/:channelId", deleteChannelController);
-  serverApp.put("/:channelId", updateChannelController);
+  serverApp.put("/", updateChannelController);
 }
