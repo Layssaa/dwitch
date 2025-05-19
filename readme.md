@@ -42,7 +42,7 @@ As ferramentas gerais dessa aplicação foram:
 - Autenticação: JWT
 - Mensageria: RabbitMQL
 - Protocolos: HTTP e WebSocket
-- Testes unitários com Jest
+- Testes unitários e de integração com Jest
 - Teste de carga com k6
 
 Ela está divida em 5 módulos - clique no nome para ir a seção e ver os detalhes. 
