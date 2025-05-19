@@ -14,6 +14,8 @@
 - [Sobre a arquitetura](#sobre-a-arquitetura)
 - [Sobre as ferramentas](#sobre-as-ferramentas-utilizadas)
 - [Sobre cada módulo](#sobre-cada-módulo)
+- [Sobre o diagrama do banco](#sobre-o-diagrama-do-banco)
+
 
 ### Rodando o projeto
 
@@ -27,9 +29,13 @@ Nessa plataforma, você pode se cadastrar, fazer o login e simular o inicio de u
 
 ### Sobre a arquitetura
 
-**OBS: Em cinza são os serviços que NÃO foram implementados de possíveis features.**
+**OBS: Em cinza são os serviços de possíveis features que NÃO foram implementados .**
 
 <img src="./assets/arquitetura.png" alt="home page" style="max-width: 800px;"/>
+
+### Sobre o diagrama do banco 
+
+<img src="./assets/database.png" alt="home page" style="max-width: 800px;"/>
 
 ### Sobre as ferramentas utilizadas
 
@@ -174,4 +180,4 @@ Esse pacote padrozina o tratamento dos errors das apis.
 
 Consulte a documentação
 
-<img src="./assets/docs.png" />
+<img src="./assets/docs.png" style="max-width: 800px;"/>
