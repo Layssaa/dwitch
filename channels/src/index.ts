@@ -27,10 +27,11 @@ app.register(channelsPrivateRouters, {
   prefix: "/channels",
 });
 
+const PORT = (process.env.PORT as unknown as number) ?? 5002 
 const start = async () => {
   try {
-    await app.listen({ port: 5002 });
-    console.log("🚀 Server ready at http://localhost:5001");
+    await app.listen({ port: PORT });
+    console.log("🚀 Server ready at ", PORT);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
