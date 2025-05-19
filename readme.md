@@ -11,6 +11,7 @@
 ### Sumário
 
 - [Sobre o projeto](#sobre-o-projeto)
+- [Sobre a arquitetura](#sobre-a-arquitetura)
 - [Sobre as ferramentas](#sobre-as-ferramentas-utilizadas)
 - [Sobre cada módulo](#sobre-cada-módulo)
 
@@ -24,9 +25,29 @@ Nessa plataforma, você pode se cadastrar, fazer o login e simular o inicio de u
 
 <img src="./assets/home-has-channel.png" alt="home page" style="max-width: 800px;"/>
 
+### Sobre a arquitetura
+
+**OBS: Em cinza são os serviços que NÃO foram implementados de possíveis features.**
+
+<img src="./assets/arquitetura.png" alt="home page" style="max-width: 800px;"/>
+
 ### Sobre as ferramentas utilizadas
 
-Esse projeto está divido em 5 módulos - clique no nome para ir a seção
+As ferramentas gerais dessa aplicação foram:
+- Apis: Fastify
+- Front: vue, usando a biblioteca vuetify, e pinia para gerenciamento de estado.
+- Banco: PostgreSQL.
+- ORM: Prisma
+- Observabilidade: OpenTelemtry + Jeager
+- Autenticação: JWT
+- Mensageria: RabbitMQL
+- Protocolos: HTTP e WebSocket
+- Testes unitários com Jest
+- Teste de carga com k6
+
+Ela está divida em 5 módulos - clique no nome para ir a seção e ver os detalhes. 
+
+#### Módulos
 
 - [/dwitch-front](#dwitch-front)
 - [/auth](#auth)
@@ -72,7 +93,7 @@ O usuário inicia a navegação pela rota /login, podendo escolher se cadastrar,
 
 Essa aplicação tem controle de acesso, não permitindo a visualização da rota "/", usuários deslogados são redirecionados para "/login".
 
-<img src="./assets/create-channel.png" style="max-width: 800px;"/>
+<img src="./assets/create-channel.png.png" style="max-width: 800px;"/>
 
 #### Criação de Canal
 
