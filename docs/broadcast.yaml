@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: Broadcast Service
+  version: 1.0.2
+  description: API to handle broadcasts.
+
+paths:
+  /broadcast/start:
+    post:
+      summary: Get user information
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Started successfully
+        "401":
+          description: Unauthorized - Invalid Tokenl, Empty Token, User's not channel owner.
+        "404":
+          description: Not Found.
+        "500":
+          description: Internal Server Error.
+
+  /ws:
+    get:
+      summary: WebSocket connection
+      
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
