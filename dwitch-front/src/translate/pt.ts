@@ -1,11 +1,23 @@
 export const pt = {
   message: {
-    inLiveTitle: 'Ao Vivo na Dwitch',
+    inLiveTitle: 'Ao vivo na Dwitch',
     channelsWouldYouLike: 'Canais que talvez você goste',
     channels: {
       toWatchLive: 'Assistir ao vivo',
       subscribe: 'Inscreva-se',
       seeMore: 'Veja Mais',
+      invite: 'Não encontrou nada? Crie um canal e convide seus amigos!',
+      createChannel: 'Criar Canal',
+      inputs: {
+        channelName: 'Nome do Canal',
+        description: 'Descrição',
+        confirmBTN: 'Criar',
+        cancelBTN: 'Cancelar',
+        errorsMessages: {
+          emptyName: 'Informe um nome.',
+          emptyDescription: 'Informe uma descrição.',
+        },
+      },
     },
     login: {
       welcome: 'Bem-vindo',

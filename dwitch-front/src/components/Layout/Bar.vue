@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import Image from './UI/Image/Logo.vue';
   import ToggleTheme from './UI/Toggle/Toggle.vue';
-  import Avatar from './Avatar.vue';
+  import Avatar from './UI/Avatar.vue';
   import Button from './UI/Button/Button.vue';
   import LangSelect from './UI/Lang/LangSelect.vue';
 

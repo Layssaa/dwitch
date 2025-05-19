@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import Avatar from './Avatar.vue';
+  import Avatar from './UI/Avatar.vue';
   import Button from './UI/Button/Button.vue';
 
 </script>

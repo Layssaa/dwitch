@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
-  import { apiAuth } from '@/api/axios'
+  import { authApi } from '@/api/axios'
   import Button from '../UI/Button/Button.vue'
   import { useI18n } from 'vue-i18n'
 
@@ -30,12 +30,12 @@
     hasError.value = false
 
     try {
-      const response = await apiAuth.post('/auth/login', {
+      const response = await authApi.post('/auth/login', {
         email: email.value,
         password: password.value,
       })
 
-      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('token', response.data.authToken)
       router.push({ name: '/' })
     } catch (err) {
       console.error('Erro ao fazer login', err)

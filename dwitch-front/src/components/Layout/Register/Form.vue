@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
-  import { apiAuth } from '@/api/axios' // ajuste esse import para onde estiver sua instância do axios
+  import { authApi } from '@/api/axios' // ajuste esse import para onde estiver sua instância do axios
   import Button from '../UI/Button/Button.vue'
   import { useI18n } from 'vue-i18n'
 
@@ -48,7 +48,7 @@
         repeatPassword: repeatPassword.value,
       }
 
-      const response = await apiAuth.post('/auth/create', request)
+      const response = await authApi.post('/auth/create', request)
 
       localStorage.setItem('token', response.data.token)
       router.push({ name: '/' })

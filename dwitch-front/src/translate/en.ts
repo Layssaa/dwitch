@@ -6,6 +6,18 @@ export const en = {
       toWatchLive: 'Watch live',
       subscribe: 'Subscribe',
       seeMore: 'See more',
+      invite: 'Didn`t find anything? Create a channel and invite your friends!',
+      createChannel: 'Create Channel',
+      inputs: {
+        channelName: 'Name',
+        description: 'Description',
+        confirmBTN: 'Create',
+        cancelBTN: 'Cancel',
+        errorsMessages: {
+          emptyName: 'Name is required.',
+          emptyDescription: 'Description is required.',
+        },
+      },
     },
     login: {
       welcome: 'Welcome',
