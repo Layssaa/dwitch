@@ -1,0 +1,81 @@
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: ./auth/Dockerfile
+    container_name: auth
+    ports:
+      - "${API_AUTH_PORT}:${API_AUTH_PORT}"
+    environment:
+      - PORT=${API_AUTH_PORT}
+      - CLIENT_URL=http://frontend:${CLIENT_PORT}
+      - API_AUTH_URL=http://auth:${API_AUTH_PORT}
+      - API_CHANNEL_URL=http://channels:${API_CHANNEL_PORT}
+      - API_USER_URL=http://user:${API_USER_PORT}
+      - API_BROADCAST_URL=http://broadcasts:${API_BROADCAST_PORT}
+      - JWT_SECRET_KEY=your_secret_key
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+    networks:
+      - dwitch
+
+  channels:
+    build:
+      context: .
+      dockerfile: ./channels/Dockerfile
+    container_name: channels
+    ports:
+      - "${API_CHANNEL_PORT}:${API_CHANNEL_PORT}"
+    environment:
+      - PORT=${API_CHANNEL_PORT}
+      - API_AUTH_URL=http://auth:${API_AUTH_PORT}
+      - CLIENT_URL=http://frontend:${CLIENT_PORT}
+    networks:
+      - dwitch
+
+  broadcasts:
+    build:
+      context: .
+      dockerfile: ./broadcasts/Dockerfile
+    container_name: broadcasts
+    ports:
+      - "${API_BROADCAST_PORT}:${API_BROADCAST_PORT}"
+    environment:
+      - PORT=${API_BROADCAST_PORT}
+      - API_AUTH_URL=http://auth:${API_AUTH_PORT}
+      - CLIENT_URL=http://frontend:${CLIENT_PORT}
+    networks:
+      - dwitch
+
+  user:
+    build:
+      context: .
+      dockerfile: ./user/Dockerfile
+    container_name: user
+    ports:
+      - "${API_USER_PORT}:${API_USER_PORT}"
+    environment:
+      - PORT=${API_USER_PORT}
+      - API_AUTH_URL=http://auth:${API_AUTH_PORT}
+      - CLIENT_URL=http://frontend:${CLIENT_PORT}
+    networks:
+      - dwitch
+
+  frontend:
+    build:
+      context:  .
+      dockerfile: ./dwitch-front/Dockerfile
+    container_name: frontend
+    ports:
+      - "${CLIENT_PORT}:${CLIENT_PORT}"
+    environment:
+      - VITE_API_AUTH_URL=http://auth:${API_AUTH_PORT}
+      - VITE_API_CHANNEL_URL=http://channels:${API_CHANNEL_PORT}
+      - VITE_API_USER_URL=http://user:${API_USER_PORT}
+      - VITE_API_BROADCAST_URL=http://broadcasts:${API_BROADCAST_PORT}
+      - VITE_WEBSOCKET_BROADCAST_URL=ws://broadcasts:${API_BROADCAST_PORT}
+    networks:
+      - dwitch
+
+networks:
+  dwitch:
+    driver: bridge

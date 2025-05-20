@@ -50,6 +50,7 @@ As ferramentas gerais dessa aplicação foram:
 - Protocolos: HTTP e WebSocket
 - Testes unitários e de integração com Jest
 - Teste de carga com k6
+- Docker/Terraform/Github
 
 Ela está divida em 5 módulos - clique no nome para ir a seção e ver os detalhes. 
 

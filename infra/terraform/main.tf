@@ -7,22 +7,31 @@ terraform {
   }
 }
 
+
 provider "aws" {
   region = var.aws_region
 }
 
 # ------------------------------------------------------------------------
-# Importação dos recursos compartilhados criados anteriormente
+# Shared Vars - Importação dos recursos compartilhados criados anteriormente
 # ------------------------------------------------------------------------
 module "shared" {
-  source = "../shared" # caminho ajustado conforme sua estrutura real
+  source = "./shared"
+
+  vpc_id              = var.vpc_id
+  subnet_ids          = var.subnet_ids
+  security_group_ids  = var.security_group_ids
+  cluster_name        = var.cluster_name
+  ecs_cluster_arn     = var.ecs_cluster_arn
+  alb_arn             = var.alb_arn
+  alb_target_group_arns = var.alb_target_group_arns
 }
 
 # ------------------------------------------------------------------------
 # AUTH API
 # ------------------------------------------------------------------------
 module "auth_api" {
-  source           = "../modules/ecs-service"
+  source           = "./modules/ecs-service"
   name             = "auth-api"
   cluster_arn      = module.shared.ecs_cluster_arn
   vpc_id           = module.shared.vpc_id
@@ -42,7 +51,7 @@ module "auth_api" {
 # CHANNELS API
 # ------------------------------------------------------------------------
 module "channels_api" {
-  source           = "../modules/ecs-service"
+  source           = "./modules/ecs-service"
   name             = "channels-api"
   cluster_arn      = module.shared.ecs_cluster_arn
   vpc_id           = module.shared.vpc_id
@@ -61,7 +70,7 @@ module "channels_api" {
 # BROADCASTS API
 # ------------------------------------------------------------------------
 module "broadcasts_api" {
-  source           = "../modules/ecs-service"
+  source           = "./modules/ecs-service"
   name             = "broadcasts-api"
   cluster_arn      = module.shared.ecs_cluster_arn
   vpc_id           = module.shared.vpc_id
@@ -81,7 +90,7 @@ module "broadcasts_api" {
 # USER API
 # ------------------------------------------------------------------------
 module "user_api" {
-  source           = "../modules/ecs-service"
+  source           = "./modules/ecs-service"
   name             = "user-api"
   cluster_arn      = module.shared.ecs_cluster_arn
   vpc_id           = module.shared.vpc_id
@@ -100,7 +109,7 @@ module "user_api" {
 # Dwitch Frontend
 # ------------------------------------------------------------------------
 module "dwitch_frontend" {
-  source           = "../modules/ecs-service"
+  source           = "./modules/ecs-service"
   name             = "dwitch-front"
   cluster_arn      = module.shared.ecs_cluster_arn
   vpc_id           = module.shared.vpc_id
@@ -116,35 +125,9 @@ module "dwitch_frontend" {
 # RabbitMQ 
 # ------------------------------------------------------------------------
 module "rabbitmq" {
-  source            = "../../modules/rabbitmq"
+  source            = "./modules/rabbitmq"
   cluster_id        = aws_ecs_cluster.your_cluster.id
   subnet_ids        = var.subnet_ids
   security_group_ids = [aws_security_group.rabbitmq_sg.id]
   desired_count     = 1
-}
-
-# ------------------------------------------------------------------------
-# RabbitMQ 
-# ------------------------------------------------------------------------
-module "rabbitmq" {
-  source            = "../../modules/rabbitmq"
-  cluster_id        = aws_ecs_cluster.your_cluster.id
-  subnet_ids        = var.subnet_ids
-  security_group_ids = [aws_security_group.rabbitmq_sg.id]
-  desired_count     = 1
-}
-
-# ------------------------------------------------------------------------
-# Shared Vars
-# ------------------------------------------------------------------------
-module "shared" {
-  source = "../modules/shared"
-
-  vpc_id              = var.vpc_id
-  subnet_ids          = var.subnet_ids
-  security_group_ids  = var.security_group_ids
-  cluster_name        = var.cluster_name
-  ecs_cluster_arn     = var.ecs_cluster_arn
-  alb_arn             = var.alb_arn
-  alb_target_group_arns = var.alb_target_group_arns
 }

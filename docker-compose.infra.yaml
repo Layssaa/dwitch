@@ -47,3 +47,14 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+  postgres_test_db:
+    image: postgres:14
+    container_name: postgres_test_db
+    environment:
+      POSTGRES_DB: dwitch_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      TZ: America/Sao_Paulo
+      PGTZ: America/Sao_Paulo
+    ports:
+      - "5433:5432"
