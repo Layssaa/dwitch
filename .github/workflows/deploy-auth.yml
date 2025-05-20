@@ -1,0 +1,50 @@
+name: Deploy Auth API
+
+on:
+  push:
+    paths:
+      - 'auth/**'
+      - 'infra/terraform/service/**'
+      - '.github/workflows/deploy-auth.yml'
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: auth
+  IMAGE_TAG: latest
+  IMAGE_URI: 334732394044.dkr.ecr.us-east-2.amazonaws.com/auth
+
+jobs:
+  deploy:
+    name: Build, Push to ECR & Deploy with Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 123456789012.dkr.ecr.$AWS_REGION.amazonaws.com
+
+      - name: Build Docker image
+        run: |
+          docker build -t $ECR_REPOSITORY ./auth
+          docker tag $ECR_REPOSITORY:latest $IMAGE_URI
+
+      - name: Push to ECR
+        run: docker push $IMAGE_URI
+
+      - name: Terraform Init & Apply
+        run: |
+          cd infra/terraform/service
+          terraform init
+          terraform apply -auto-approve
+        env:
+          TF_VAR_container_image: ${{ env.IMAGE_URI }}

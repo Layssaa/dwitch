@@ -1,8 +1,13 @@
 {
-    "name": "dwitch",
-    "private": true,
-    "devDependencies": {
-      "typescript": "5.8.3"
-    }
+  "name": "dwitch",
+  "private": true,
+  "devDependencies": {
+    "typescript": "5.8.3"
+  },
+  "scripts": {
+    "tf:init": "docker compose -f infra/docker-compose.terraform.yml run terraform init",
+    "tf:plan": "docker compose -f infra/docker-compose.terraform.yml run terraform plan",
+    "tf:apply": "docker compose -f infra/docker-compose.terraform.yml run terraform apply -auto-approve",
+    "tf:destroy": "docker compose -f infra/docker-compose.terraform.yml run terraform destroy -auto-approve"
   }
-  
+}

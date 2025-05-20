@@ -31,11 +31,11 @@ Nessa plataforma, você pode se cadastrar, fazer o login e simular o inicio de u
 
 **OBS: Em cinza são os serviços de possíveis features que NÃO foram implementados .**
 
-<img src="./assets/arquitetura.png" alt="home page" style="max-width: 800px;"/>
+<img src="./assets/arquitetura.png" alt="arquitetura" style="max-width: 800px;"/>
 
 ### Sobre o diagrama do banco 
 
-<img src="./assets/database.png" alt="home page" style="max-width: 800px;"/>
+<img src="./assets/database.png" alt="database" style="max-width: 800px;"/>
 
 ### Sobre as ferramentas utilizadas
 
@@ -74,7 +74,7 @@ No repositório há também outras pastas:
 - **/.github** - CI/CD (DOING)
 - **/infra** - terraform (DOING)
 
-#### Sobre cada módulo
+### Sobre cada módulo
 
 #### /dwitch-front
 
@@ -99,7 +99,7 @@ O usuário inicia a navegação pela rota /login, podendo escolher se cadastrar,
 
 Essa aplicação tem controle de acesso, não permitindo a visualização da rota "/", usuários deslogados são redirecionados para "/login".
 
-<img src="./assets/create-channel.png.png" style="max-width: 800px;"/>
+<img src="./assets/create-channel.png" style="max-width: 800px;"/>
 
 #### Criação de Canal
 
@@ -121,7 +121,7 @@ Ao iniciar uma transmissão, os usuários presentes irão ser notifcados.
 
 #### Temas e Idiomas
 
-O usuário pode trocar o tema do site entre Dark e Light e E também o idioma.
+O usuário pode trocar o tema do site entre Dark e Light e também o idioma.
 
 <img src="./assets/home-white-has-channel.png" style="max-width: 800px;"/>
 
