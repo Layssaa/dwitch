@@ -16,13 +16,13 @@ export async function createBroadcastService(data: ICreateBroadcasValidator) {
   const channelFound = await findChannelByIdRepository({
     id: channelId,
   });
+  
+  if (!channelFound) {
+    throw new NotFoundError("Channel not found");
+  }
 
   if (channelFound?.owner_id != userIdAuth) {
     throw new UnauthorizedError("Not allowed");
-  }
-
-  if (!channelFound) {
-    throw new NotFoundError("Channel not found");
   }
 
   const broadcastCreated = await createBroadcastRepository({ channelId });

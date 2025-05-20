@@ -9,7 +9,7 @@
 ### Esse repositório tem o propósito de apresentar o desenvolvimento feito de um MVP baseado na Twitch.
 
 ### Sumário
-
+- [Rodando o projeto](#rodando-o-projeto)
 - [Sobre o projeto](#sobre-o-projeto)
 - [Sobre a arquitetura](#sobre-a-arquitetura)
 - [Sobre as ferramentas](#sobre-as-ferramentas-utilizadas)
@@ -19,7 +19,44 @@
 
 ### Rodando o projeto
 
-### **DOING - comandos**
+## Comandos
+
+Inicie o docker.
+
+Copie as variáveis
+
+`cp .env.example .env`
+
+Depois, suba a infra que precisaremos.
+
+`docker compose -f docker-compose.infra.yaml --env-file .env up --build`
+
+Subindo .
+
+`cd ./auth npm run dev`
+
+Na pasta inicial instalar dependencias
+`pnpm install` 
+
+Subindo módulo de autenticação.
+
+`cd ./auth npm run dev`
+
+Subindo módulo de canais.
+
+`cd ../channels npm run dev`
+
+Subindo módulo de transmissões.
+
+`cd ../broadcasts npm run dev`
+
+Subindo módulo de usuário.
+
+`cd ../user npm run dev`
+
+Subindo módulo de front.
+
+`cd ../user npm run dev`
 
 ### Sobre o projeto
 
