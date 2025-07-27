@@ -24,7 +24,7 @@ app.register(channelsPublicRouters, {
 
 app.addHook("onRequest", verifyAuth);
 app.register(channelsPrivateRouters, {
-  prefix: "/channels",
+  prefix: "/channels/protected",
 });
 
 const PORT = (process.env.PORT as unknown as number) ?? 5002 
