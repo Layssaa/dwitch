@@ -15,10 +15,11 @@ export async function createUserController(
   try {
     const data = createUserValidator.parse(req.body);
 
-    await createUserService(data);
+    const { token } = await createUserService(data);
 
     const response = {
       message: "User created successfully",
+      authToken: token,
     };
 
     handleSendPayload({ span, payload: response });
