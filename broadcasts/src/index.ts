@@ -25,6 +25,10 @@ app.register(async (app) => {
       connection.send(JSON.stringify({ ...data, status: "broadcast-started" }));
     });
 
+     broadcaster.on("broadcast-finished", (data) => {
+      connection.send(JSON.stringify({ ...data, status: "broadcast-finished" }));
+    });
+
     connection.on("open", () => {
       clients.add(connection);
       connection.send("Websocket Connected");

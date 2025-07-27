@@ -39,6 +39,7 @@ export async function startConsumer() {
 
   channel.bindQueue(q.queue, EXCHANGE, "");
 
+  // refazer essa parte
   channel.consume(
     q.queue,
     (msg: any) => {
