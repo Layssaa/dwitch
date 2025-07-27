@@ -15,6 +15,12 @@ async function startABroadcast (data:IStartABroadcast){
   return broadcastsApi.post('/broadcasts/start', data);
 }
 
+async function finishBroadcast (data:IStartABroadcast){
+  return broadcastsApi.post('/broadcasts/finished', data);
+}
+
+
 export {
   startABroadcast,
+  finishBroadcast,
 }

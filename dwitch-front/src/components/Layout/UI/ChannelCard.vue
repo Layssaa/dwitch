@@ -1,7 +1,16 @@
 <script lang="ts" setup>
+  import { subscriberInChannel } from '@/api/channels';
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
+
+  async function handleSubscriberChannel (){
+    try {
+      await subscriberInChannel({ channelId: props.id});
+    } catch (error) {
+      console.log('ERROR', error);
+    }
+  }
 
   const props = defineProps<{
     name: string
@@ -21,7 +30,13 @@
     variant="elevated"
     width="344"
   >
-    <v-btn class="ms-4" color="secondary" :text="t('message.channels.subscribe')" variant="outlined" />
+    <v-btn
+      class="ms-4"
+      color="secondary"
+      :onclick="handleSubscriberChannel"
+      :text="t('message.channels.subscribe')"
+      variant="outlined"
+    />
   </v-card>
 
 </template>

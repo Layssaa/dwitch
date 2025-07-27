@@ -63,7 +63,7 @@
 
 <template>
   <v-container>
-    <v-form v-model="valid" @submit.prevent="submit">
+    <v-form class="d-flex flex-column" v-model="valid" @submit.prevent="submit">
       <v-text-field
         v-model="name"
         class="mb-4"

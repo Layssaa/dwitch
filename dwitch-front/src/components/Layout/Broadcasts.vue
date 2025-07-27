@@ -1,7 +1,16 @@
 <script setup lang="ts">
+  import { getLiveChannels } from '@/api/channels';
   import LiveCard from './UI/LiveCard.vue';
+  import type { ILiveBroadcast } from '@/api/types';
+
+  let broadcasts: ILiveBroadcast[] = [];
 
   async function getBroadcasts () {
+    try {
+      broadcasts = await getLiveChannels();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   onMounted(() => {
@@ -18,8 +27,8 @@
     show-arrows
   >
     <div class="d-flex flex-row align-start ga-4 mb-8">
-      <div v-for="n in 3" :key="n">
-        <LiveCard id="Mock ID" about="Channel description" name="Channel name" />
+      <div v-for="(broadcast, i) in broadcasts" :key="i">
+        <LiveCard :id="broadcast.logs[0].id" :about="broadcast.channel.about" :name="broadcast.channel.name" />
       </div>
     </div>
   </v-slide-group>
