@@ -1,5 +1,5 @@
 import { channelsApi } from './axios';
-import type { ILiveBroadcast } from './types';
+import type { ILiveBroadcastV2 } from './types';
 
 channelsApi.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
@@ -23,7 +23,7 @@ async function createChannel (data: ICreateChannel) {
   return response.data.channels;
 }
 
-async function getLiveChannels (): Promise<ILiveBroadcast[]> {
+async function getLiveChannels (): Promise<ILiveBroadcastV2[]> {
   const response = await channelsApi.get('/channels/protected/live-channels');
   return response.data.liveBroadcasts;
 }

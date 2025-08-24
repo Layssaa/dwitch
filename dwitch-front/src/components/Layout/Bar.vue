@@ -4,8 +4,15 @@
   import Avatar from './UI/Avatar.vue';
   import Button from './UI/Button/Button.vue';
   import LangSelect from './UI/Lang/LangSelect.vue';
+  import { useRouter } from 'vue-router'
 
   const isAuthenticated = localStorage.getItem('token')
+
+  const router = useRouter()
+
+  function goToLogin () {
+    router.push('/login')
+  }
 
 </script>
 
@@ -15,7 +22,7 @@
     <v-spacer />
     <LangSelect />
     <ToggleTheme />
-    <Button v-if="!isAuthenticated" color="primary" text="Entrar" />
+    <Button v-if="!isAuthenticated" color="primary" text="Entrar" @onclick="goToLogin" />
     <Avatar v-if="isAuthenticated" />
   </v-app-bar>
 </template>

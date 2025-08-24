@@ -1,4 +1,4 @@
-import { dbClient } from "../../../user/src/database";
+import { dbClient } from "../database";
 
 interface ISubscriberRepository {
   userId: string;

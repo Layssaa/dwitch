@@ -5,7 +5,7 @@ export const authApi = axios.create({
 });
 
 export const userApi = axios.create({
-  baseURL: import.meta.env.VITE_API_USER_URL ?? 'http://localhost:5001',
+  baseURL: import.meta.env.VITE_API_USER_URL ?? 'http://localhost:5151',
 });
 
 export const channelsApi = axios.create({

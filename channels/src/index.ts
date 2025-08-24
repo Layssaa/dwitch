@@ -18,6 +18,7 @@ app.register(cors, {
   origin: allowedOrigins,
 });
 
+
 app.register(channelsPublicRouters, {
   prefix: "/channels",
 });
@@ -27,7 +28,7 @@ app.register(channelsPrivateRouters, {
   prefix: "/channels/protected",
 });
 
-const PORT = (process.env.PORT as unknown as number) ?? 5002 
+const PORT = 5555;// (process.env.PORT as unknown as number) ?? 5002 
 const start = async () => {
   try {
     await app.listen({ port: PORT });

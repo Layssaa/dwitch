@@ -19,12 +19,11 @@ export async function createUserController(
 
     const response = {
       message: "User created successfully",
-      authToken: token,
     };
 
     handleSendPayload({ span, payload: response });
 
-    return rep.status(SuccessCodes.CREATED).send(response);
+    return rep.status(SuccessCodes.CREATED).send({ ...response, authToken: token });
   } catch (error) {
     console.error(error);
     const errorHandled = handlerError(error as Error, "ErrorToCreateUser");

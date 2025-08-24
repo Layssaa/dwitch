@@ -11,7 +11,7 @@ export function findUserRepositoryById({ id }: IFindUserById) {
     },
     omit: {
       password: true,
-    }
+    },
   });
 }
 
@@ -26,6 +26,20 @@ export function findChannelByUserIdRepository({
       owner_id: userId,
       deletedAt: null,
     },
+    include: {
+      broadcasts: {
+        where: {
+          logs: {
+            none: {
+              status: "COMPLETED",
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 1,
+      },
+    },
   });
 }
-

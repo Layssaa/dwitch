@@ -12,10 +12,20 @@ export async function findChannelByIdRepository({ id }: IFindChannelById) {
   });
 }
 
-export async function getAllChannelsRepository() {
+export async function getAllChannelsRepository({
+  userId,
+}: {
+  userId?: string;
+}) {
+  const removeUserChannel = userId ? { 
+     AND: {
+        NOT: { owner_id: userId },
+      }
+   } : {};
   return dbClient.channel.findMany({
     where: {
       deletedAt: null,
+      ...removeUserChannel
     },
   });
 }
@@ -38,26 +48,51 @@ export async function getLiveBroadcastsRepository({
 
   const channelsIds = channels?.subcriptions.map((channel) => channel.id);
 
-  const broadcasts = await dbClient.broadcast.findMany({
+  const liveChannels = await dbClient.channel.findMany({
     where: {
-      channelId: {
+      id: {
         in: channelsIds,
       },
-      AND: [
-        {
-          logs: {
-            every: {
-              status: "LIVE",
+      AND: {
+        broadcasts: {
+          some: {
+            logs: {
+              some: {
+                status: "LIVE",
+              },
+            },
+          },
+          none: {
+            logs: {
+              some: {
+                status: "COMPLETED",
+              },
             },
           },
         },
-      ],
+      },
     },
-    select: {
-      logs: true,
-      channel: true,
+    include: {
+      broadcasts: {
+        include: {
+          logs: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 1,
+      },
     },
   });
 
-  return broadcasts;
+  // console.log('broadcasts', broadcasts);
+  console.log("CHANNELS", liveChannels);
+  console.log("CHANNELS: LOGS");
+  liveChannels.forEach((channel) =>
+    channel.broadcasts.flat().map((broadcast) => {
+      console.log("broadcast logs", broadcast.logs, broadcast.logs.flat());
+    })
+  );
+
+  return liveChannels;
 }

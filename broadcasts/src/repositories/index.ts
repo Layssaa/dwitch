@@ -1,4 +1,4 @@
-export { findChannelByIdRepository } from "./get.repository";
+export { findChannelByIdRepository, checkLiveBroadcastRepository, findBroadcastByIdRepository } from "./get.repository";
 export {
   createBroadcastRepository,
   createCompletedBroadcastLog,

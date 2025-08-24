@@ -17,8 +17,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('token')
   const isUnloggedRouter = to.name === '/Login' || to.name === '/Register'
+  const disableAuth = true;
 
-  if (!isUnloggedRouter && !isAuthenticated) {
+  if (!isUnloggedRouter && !isAuthenticated && !disableAuth) {
     return next({ path:'/login' })
   } else {
     next()

@@ -19,12 +19,11 @@ export async function loginUserController(
 
     const response = {
       message: "User authenticated successfully",
-      authToken: token,
     };
 
     handleSendPayload({ span, payload: response });
 
-    return rep.status(SuccessCodes.SUCCESS).send(response);
+    return rep.status(SuccessCodes.SUCCESS).send({...response, authToken: token});
   } catch (error) {
     console.error(error);
     const errorHandled = handlerError(error as Error, "ErrorAuthenticateUser");

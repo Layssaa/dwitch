@@ -24,6 +24,7 @@ declare module 'vue' {
     Header: typeof import('./components/Layout/Header.vue')['default']
     Home: typeof import('./components/Home.vue')['default']
     LangSelect: typeof import('./components/Layout/UI/Lang/LangSelect.vue')['default']
+    Live: typeof import('./components/Watch.vue')['default']
     LiveCard: typeof import('./components/Layout/UI/LiveCard.vue')['default']
     Login: typeof import('./components/Login.vue')['default']
     Logo: typeof import('./components/Layout/UI/Image/Logo.vue')['default']
@@ -35,5 +36,6 @@ declare module 'vue' {
     StartLiveStreaming: typeof import('./components/Layout/StartLiveStreaming.vue')['default']
     Toggle: typeof import('./components/Layout/UI/Toggle/Toggle.vue')['default']
     Unlogged: typeof import('./components/Layout/UI/Bar/Unlogged.vue')['default']
+    Watch: typeof import('./components/Watch.vue')['default']
   }
 }

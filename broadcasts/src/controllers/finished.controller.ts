@@ -22,7 +22,7 @@ export async function finishedBroadcastController(
     }
 
     const response = await finishedBroadcastService({
-      channelId: body.channelId,
+      broadcastId: body.broadcastId,
       userIdAuth: userdId,
     });
 

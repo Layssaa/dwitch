@@ -15,7 +15,7 @@
     "@dwitch/errors": ["packages/errors/src"],
     "@validators/*": ["src/validators/*"]
   },
-  "include": ["src"],
+  "include": ["src", "../channels/src/controllers/subcriber-channel.controller.ts", "../channels/src/repositories/subscriber.repository.ts", "../channels/src/services/subscriber.service.ts", "../channels/src/validators/subcribe.validator.ts"],
   "exclude": ["dist"],
   "files": ["types/fastify.d.ts"]
 }

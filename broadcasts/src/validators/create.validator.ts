@@ -5,7 +5,7 @@ export const createBroadcastValidator = z.object({
 });
 
 export const finishedBroadcastValidator = z.object({
-    channelId: z.string(),
+    broadcastId: z.string(),
 });
 
 

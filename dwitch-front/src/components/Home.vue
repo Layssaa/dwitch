@@ -16,19 +16,22 @@
   import Carousel from '@/components/Layout/UI/Carousel/Carousel.vue';
   import Ads from '@/components/Layout/UI/Ads/Ads.vue';
   import MyChannel from '@/components/Layout/UI/MyChannel/MyChannel.vue';
+  import { useChannelsStore } from '@/stores/app';
 
   const { t } = useI18n()
   const userStore = useUserStore();
-  const disableBar = false;
+  const channelStore = useChannelsStore();
 
+  const disableBar = false;
+  let isStreaming = false;
   async function handleUserChannel (){
     try {
-      console.log('GET USER CHANNEL');
       const channel = await getUserChannels();
       userStore.setUserChannel(channel);
-      console.log('Channel user', channel);
+      channelStore.setMyBroadcastId(channel.broadcasts[0].broadcastId);
+      isStreaming = !!channel && !!channel.broadcasts[0]?.broadcastId;
     } catch (error) {
-      console.error('error to get channel',error);
+      console.error('Error: Get user channel',error);
     }
 
   }
@@ -36,9 +39,12 @@
   onMounted(async () => {
     ws.onmessage = event => {
       const data = JSON.parse(event.data);
+
       if(data.status == 'broadcast-started'){
         const message = t('message.channels.feedbacks.broadcastStarted')
-        alert(`${message} ${data.name}!`);
+        if(userStore.channel?.id !== data.id){
+          alert(`${message} ${data.name}!`);
+        }
       }
     };
 
@@ -49,8 +55,8 @@
   <v-app id="inspire">
     <Bar v-if="!disableBar" />
     <Banner />
-    <StartLiveStreaming v-if="!!userStore.channel" />
-    <FinishedLiveStreaming v-if="!!userStore.channel" />
+    <StartLiveStreaming v-if="!isStreaming" />
+    <FinishedLiveStreaming v-if="isStreaming" />
 
     <v-footer app color="background" height="44" />
 
@@ -59,7 +65,7 @@
       <ToggleTheme />
     </p>
 
-    <v-main class="mx-4 pt-0">
+    <v-main class="mx-4 my-2 pt-0">
       <MyChannel
         v-if="!!userStore.channel"
         :id="userStore.channel?.id"
@@ -69,7 +75,7 @@
       <Broadcasts />
       <Channels />
       <Carousel />
-      <CreateChannel v-if="!userStore.channel" />
+      <CreateChannel v-if="!userStore.channel && userStore.isAuth" />
       <Ads />
     </v-main>
   </v-app>

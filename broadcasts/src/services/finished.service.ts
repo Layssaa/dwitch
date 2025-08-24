@@ -1,35 +1,32 @@
 import { NotFoundError, UnauthorizedError } from "@dwitch/errors";
 import {
-  createBroadcastRepository,
   createCompletedBroadcastLog,
-  createStartBroadcastLog,
-  findChannelByIdRepository,
+  findBroadcastByIdRepository,
 } from "../repositories";
 import { createRabbitMQConnection, publishBroadcast } from "../lib/rabbitmq";
 
 interface ICreateBroadcasValidator {
   userIdAuth: string;
-  channelId: string;
+  broadcastId: string;
 }
 
 export async function finishedBroadcastService(data: ICreateBroadcasValidator) {
-  const { channelId, userIdAuth } = data;
+  const { broadcastId, userIdAuth } = data;
 
-  const channelFound = await findChannelByIdRepository({
-    id: channelId,
+  const broadcastFound = await findBroadcastByIdRepository({
+    id: broadcastId,
   });
   
-  if (!channelFound) {
+  if (!broadcastFound) {
     throw new NotFoundError("Channel not found");
   }
 
-  if (channelFound?.owner_id != userIdAuth) {
+  if (broadcastFound?.channel.owner_id != userIdAuth) {
     throw new UnauthorizedError("Not allowed");
   }
 
-  const broadcastCreated = await createBroadcastRepository({ channelId });
   await createCompletedBroadcastLog({
-    broadcastId: broadcastCreated.id,
+    broadcastId: broadcastId,
   });
 
   const message = {
@@ -37,7 +34,7 @@ export async function finishedBroadcastService(data: ICreateBroadcasValidator) {
   };
   const { channel } = await createRabbitMQConnection();
 
-  await publishBroadcast(channel, { ...message, ...channelFound });
+  await publishBroadcast(channel, { ...message, ...broadcastFound });
 
   return message;
 }

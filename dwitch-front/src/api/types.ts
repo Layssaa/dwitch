@@ -6,6 +6,10 @@ interface IChannels {
   subscribers: string[];
 }
 
+export interface IMyChannel extends IChannels {
+  broadcasts: ILog[]
+}
+
 enum BroadcastLogsStatus {
   LIVE,
   COMPLETED,
@@ -36,4 +40,8 @@ export interface ILiveBroadcast {
 
 export interface ILiveBroadcasts{
   liveBroadcasts: ILiveBroadcast[]
+}
+
+export interface ILiveBroadcastV2 extends IChannels{
+  broadcasts: ILog[];
 }

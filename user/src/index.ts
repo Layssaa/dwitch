@@ -24,7 +24,7 @@ app.register(userRouters, {
   prefix: "/user",
 });
 
-const PORT = (process.env.PORT as unknown as number) ?? 5001 
+const PORT = (process.env.PORT as unknown as number) ?? 5151 
 const start = async () => {
   try {
     await app.listen({ port: PORT });

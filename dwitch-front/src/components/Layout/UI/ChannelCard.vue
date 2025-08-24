@@ -6,7 +6,7 @@
 
   async function handleSubscriberChannel (){
     try {
-      await subscriberInChannel({ channelId: props.id});
+      await subscriberInChannel({ channelId: props.id });
     } catch (error) {
       console.log('ERROR', error);
     }

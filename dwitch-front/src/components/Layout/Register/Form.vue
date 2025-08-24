@@ -50,7 +50,7 @@
 
       const response = await authApi.post('/auth/create', request)
 
-      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('token', response.data.authToken)
       router.push({ name: '/' })
     } catch (err) {
       console.error('Erro ao fazer o cadastro', err)
