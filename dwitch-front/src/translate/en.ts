@@ -9,6 +9,8 @@ export const en = {
       invite: 'Didn`t find anything? Create a channel and invite your friends!',
       createChannel: 'Create Channel',
       startBtn: 'Start Live Streaming',
+      finishBtn: 'Finish Live Streaming',
+      myChannel: 'My Channel',
       inputs: {
         channelName: 'Name',
         description: 'Description',

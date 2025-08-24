@@ -32,3 +32,4 @@ pnpm-debug.log*
 */*/.terraform
 **/**/*.tfstate
 **/**/*.tfstate.lock.info
+/elasticsearch_data

@@ -1,18 +1,25 @@
 <script lang="ts" setup>
   import { useI18n } from 'vue-i18n'
+  import { useRouter } from 'vue-router'
 
   const { t } = useI18n()
+  const router = useRouter()
 
   const props = defineProps<{
     name: string
     about: string
     id: string | number
   }>()
+
+  function goToWatchBroadcast (){
+    router.push(`/watch/${props.id}`)
+  }
 </script>
 
 <template>
   <v-card
     color="surface"
+    :onclick="goToWatchBroadcast"
     width="344"
   >
     <v-img

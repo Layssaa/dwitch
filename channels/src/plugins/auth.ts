@@ -24,6 +24,8 @@ async function verifyAuth(request: FastifyRequest, reply: FastifyReply) {
 
     request.user = { userId: response.data.userId };
   } catch (error) {
+    console.log(error);
+    
     const errorHandled = handlerError(error as Error, "ErrorValidateToken");
     return reply.status(errorHandled.statusCode).send(errorHandled);
   }

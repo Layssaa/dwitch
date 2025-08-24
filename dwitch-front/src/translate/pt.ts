@@ -9,6 +9,8 @@ export const pt = {
       invite: 'Não encontrou nada? Crie um canal e convide seus amigos!',
       createChannel: 'Criar Canal',
       startBtn: 'Iniciar Transmissão Ao Vivo',
+      finishBtn: 'Encerrar Transmissão Ao Vivo',
+      myChannel: 'Meu Canal',
       inputs: {
         channelName: 'Nome do Canal',
         description: 'Descrição',

@@ -1,12 +1,13 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   postgres:
     image: postgres:14
+    container_name: postgres
     environment:
       POSTGRES_DB: dwitch
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: '123456'
       TZ: America/Sao_Paulo
       PGTZ: America/Sao_Paulo
     ports:

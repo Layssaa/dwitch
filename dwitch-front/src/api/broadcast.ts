@@ -11,10 +11,21 @@ broadcastsApi.interceptors.request.use(config => {
 interface IStartABroadcast {
   channelId: string
 }
-async function startABroadcast (data:IStartABroadcast){
+
+interface ICreateBroadcastResponse {
+  message: string;
+  broadcastId: string;
+}
+async function startABroadcast (data:IStartABroadcast): Promise<ICreateBroadcastResponse>{
   return broadcastsApi.post('/broadcasts/start', data);
 }
 
+async function finishBroadcast (data: { broadcastId: string }){
+  return broadcastsApi.post('/broadcasts/finished', data);
+}
+
+
 export {
   startABroadcast,
+  finishBroadcast,
 }

@@ -12,7 +12,10 @@ export async function getAllChannelsController(
   const span = trace.getSpan(context.active());
 
   try {
-    const channels = await getAllChannelsService();
+    const userdId = req.user?.userId;
+    const channels = await getAllChannelsService({
+      userId: userdId,
+    });
 
     const response = {
       channels,

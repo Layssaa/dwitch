@@ -1,5 +1,5 @@
 import { userApi } from './axios';
-import type { IChannels } from './types';
+import type { IMyChannel } from './types';
 
 userApi.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
@@ -9,7 +9,7 @@ userApi.interceptors.request.use(config => {
   return config
 })
 
-async function getUserChannels ():Promise<IChannels>{
+async function getUserChannels ():Promise<IMyChannel>{
   const response = await userApi.get('/user/channels');
   return response.data.channel
 }

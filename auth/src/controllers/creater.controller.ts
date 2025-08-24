@@ -15,7 +15,7 @@ export async function createUserController(
   try {
     const data = createUserValidator.parse(req.body);
 
-    await createUserService(data);
+    const { token } = await createUserService(data);
 
     const response = {
       message: "User created successfully",
@@ -23,7 +23,7 @@ export async function createUserController(
 
     handleSendPayload({ span, payload: response });
 
-    return rep.status(SuccessCodes.CREATED).send(response);
+    return rep.status(SuccessCodes.CREATED).send({ ...response, authToken: token });
   } catch (error) {
     console.error(error);
     const errorHandled = handlerError(error as Error, "ErrorToCreateUser");

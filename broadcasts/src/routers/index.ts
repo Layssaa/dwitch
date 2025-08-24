@@ -10,4 +10,12 @@ export function broadcastRouters(serverApp: FastifyInstance) {
     },
     createBroadcastController
   );
+
+    serverApp.post(
+    "/finished",
+    {
+      preHandler: [verifyAuth],
+    },
+    createBroadcastController
+  );
 }
