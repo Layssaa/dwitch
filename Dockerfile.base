@@ -1,0 +1,25 @@
+FROM node:20-alpine
+
+RUN npm install -g pnpm
+WORKDIR /app
+
+ONBUILD COPY ./packages ./packages  
+ONBUILD COPY ./pnpm-lock.yaml ./
+ONBUILD COPY ./pnpm-workspace.yaml ./
+ONBUILD COPY ./otel-collector-config.yml ./
+
+ONBUILD RUN cd ./packages/db-lib
+
+ONBUILD RUN pnpm install
+
+ONBUILD RUN cd ./packages/errors
+ONBUILD RUN pnpm install
+
+ONBUILD RUN pnpm install --prod
+
+# SUBSTITUIR POR .ENV
+ENV JWT_SECRET_KEY="d4f501c096eef7a3ff708604d8f4405ac1b080af2dd8e94cc41aec4933136221"
+ENV NODE_ENV = 'dev'
+ENV DATABASE_URL='postgresql://postgres:2010@localhost:5432/dwitch'
+
+CMD ["node", "dist/index.js"]

@@ -1,0 +1,24 @@
+FROM servicesbase:latest
+
+RUN npm install -g pnpm
+WORKDIR /app
+
+COPY ./channels/dist ./dist
+COPY ./channels/package.json ./
+
+RUN pnpm install
+
+RUN pnpm install --prod
+
+ENV PORT=5555
+ENV JWT_SECRET_KEY="d4f501c096eef7a3ff708604d8f4405ac1b080af2dd8e94cc41aec4933136221"
+ENV NODE_ENV = 'dev'
+ENV CLIENT_URL="http://localhost:3000"
+ENV API_AUTH_URL="http://localhost:5001"
+ENV API_USER_URL="http://localhost:5001"
+ENV API_BROADCAST_URL="http://localhost:5003"
+ENV DATABASE_URL='postgresql://postgres:2010@localhost:5432/dwitch'
+
+EXPOSE 5555
+
+CMD ["node", "dist/index.js"]

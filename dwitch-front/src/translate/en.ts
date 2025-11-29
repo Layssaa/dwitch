@@ -1,3 +1,8 @@
+/**
+ *  Fazer assim, implica em repetir palavras.
+ * todo: manter dentro de uma unica chave
+ */
+
 export const en = {
   message: {
     inLiveTitle: 'Live on Dwitch',

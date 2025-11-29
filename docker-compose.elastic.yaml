@@ -1,52 +1,52 @@
 # voltar nisso aqui depois
 services:  
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.2
-    container_name: elasticsearch
-    environment:
-      - node.name=elasticsearch
-      - cluster.name=es-docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - http.cors.enabled=true
-      - http.cors.allow-origin="*"
-      - discovery.type=single-node
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ./elasticsearch_data:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
-    networks: 
-        - observability
-        
-  kibana:
-      image: docker.elastic.co/kibana/kibana:9.1.2
-      container_name: kibana
-      ports:
-        - 5601:5601
-      environment:
-        ELASTICSEARCH_URL: http://elasticsearch:9200
-        ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
-        # ELASTICSEARCH_USERNAME: elastic
-        # ELASTICSEARCH_PASSWORD: senha_gerada
-      networks: 
-          - observability
-
-
-  # metricbeat:
-  #   image: docker.elastic.co/beats/metricbeat:7.13.0
-  #   container_name: metricbeat
-  #   user: root
-  #   volumes:      
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #     - ./beats/metric/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
-  #   restart: on-failure
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:9.1.2
+  #   container_name: elasticsearch
+  #   environment:
+  #     - node.name=elasticsearch
+  #     - cluster.name=es-docker-cluster
+  #     - ES_SETTING_BOOTSTRAP_MEMORY__LOCK=true
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #     - http.cors.enabled=true
+  #     - http.cors.allow-origin="*"
+  #     - discovery.type=single-node
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   volumes:
+  #     - ./elasticsearch_data:/usr/share/elasticsearch/data
+  #   ports:
+  #     - 9200:9200
   #   networks: 
-  #     - observability
+  #       - observability
+        
+  # kibana:
+  #     image: docker.elastic.co/kibana/kibana:9.1.2
+  #     container_name: kibana
+  #     ports:
+  #       - 5601:5602
+  #     environment:
+  #       ELASTICSEARCH_URL: http://elasticsearch:9200
+  #       ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+  #       ELASTICSEARCH_USERNAME: elastic
+  #       ELASTICSEARCH_PASSWORD: senha_gerada
+  #     networks: 
+  #         - observability
+
+
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:9.1.2
+    container_name: metricbeat
+    user: root
+    volumes:      
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./beats/metric/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+    restart: on-failure
+    networks: 
+      - observability
 
   # heartbeat:
   #   image: docker.elastic.co/beats/heartbeat:7.13.0

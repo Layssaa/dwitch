@@ -1,7 +1,9 @@
 <script lang="ts">
   export default {
     props: {
-      id: String,
+      params:{
+        id: String,
+      },
     },
   }
 
@@ -10,6 +12,6 @@
 
 <template>
   <div>
-    Canal {{ $route.params.id }}
+    <!-- Canal {{ $route.params?.id as string }} -->
   </div>
 </template>

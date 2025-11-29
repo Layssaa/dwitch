@@ -48,7 +48,7 @@
 
 <template>
   <v-container>
-    <v-form class="d-flex flex-column" v-model="valid" @submit.prevent="submit">
+    <v-form v-model="valid" class="d-flex flex-column" @submit.prevent="submit">
       <v-text-field
         v-model="email"
         class="ma-2"

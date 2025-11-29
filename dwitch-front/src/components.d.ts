@@ -24,7 +24,6 @@ declare module 'vue' {
     Header: typeof import('./components/Layout/Header.vue')['default']
     Home: typeof import('./components/Home.vue')['default']
     LangSelect: typeof import('./components/Layout/UI/Lang/LangSelect.vue')['default']
-    Live: typeof import('./components/Watch.vue')['default']
     LiveCard: typeof import('./components/Layout/UI/LiveCard.vue')['default']
     Login: typeof import('./components/Login.vue')['default']
     Logo: typeof import('./components/Layout/UI/Image/Logo.vue')['default']

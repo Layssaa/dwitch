@@ -3,7 +3,7 @@ import type { ThemeDefinition } from 'vuetify';
 export const light: ThemeDefinition = {
   dark: false,
   colors: {
-    background: '#F4F2EE',
+    background: '#f4eef3ff',
     surface: '#ffffff',
     primary: '#F23545',
     toggleColor: '#01122A',

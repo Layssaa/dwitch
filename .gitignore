@@ -33,3 +33,4 @@ pnpm-debug.log*
 **/**/*.tfstate
 **/**/*.tfstate.lock.info
 /elasticsearch_data
+/elastic-start-local

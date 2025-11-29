@@ -3,11 +3,22 @@ FROM node:20-alpine
 RUN npm install -g pnpm
 WORKDIR /app
 
-COPY ./dist ./dist
-COPY ./package.json ./
-#COPY ../packages ./packages  
-#COPY ../pnpm-lock.yaml ./
-#COPY ../pnpm-workspace.yaml ./
+COPY ./auth/dist ./dist
+COPY ./auth/package.json ./
+
+COPY ./packages ./packages  
+COPY ./pnpm-lock.yaml ./
+COPY ./pnpm-workspace.yaml ./
+RUN cd ./packages/db-lib
+
+RUN pnpm install
+
+#RUN cd ..
+RUN cd ./packages/errors
+RUN pnpm install
+
+#RUN cd ..
+#RUN cd ..
 
 RUN pnpm install --prod
 

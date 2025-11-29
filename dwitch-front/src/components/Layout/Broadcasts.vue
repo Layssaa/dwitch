@@ -9,7 +9,6 @@
   async function getBroadcasts () {
     try {
       broadcasts = await getLiveChannels();
-      console.log('broadcasts: >>>>>>>',broadcasts);
       hasLiveStreaming = broadcasts.length > 0;
     } catch (error) {
       console.log(error);
