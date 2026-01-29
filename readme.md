@@ -38,6 +38,12 @@ Subindo .
 Na pasta inicial instalar dependencias
 `pnpm install` 
 
+Build erros lib
+`cd packages/errors && npm run build` 
+
+Build erros db
+`cd packages/db-lib && npm run build` 
+
 Subindo módulo de autenticação.
 
 `cd ./auth npm run dev`

@@ -1,0 +1,17 @@
+
+syntax = "proto3";
+
+package auth;
+
+message AuthCheck {
+  string message = 1;
+  string userId = 2;
+}
+
+message AuthToken {
+  string token = 3;
+}
+
+service AuthService {
+  rpc ValidateAuthToken(AuthToken) returns(AuthCheck){}
+}

@@ -15,6 +15,8 @@
     "@dwitch/db-client": "workspace:*",
     "@dwitch/errors": "workspace:*",
     "@fastify/cors": "11.0.1",
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
     "@opentelemetry/api": "1.9.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.201.0",
     "@opentelemetry/instrumentation-http": "0.201.0",
@@ -23,6 +25,7 @@
     "dotenv": "^16.5.0",
     "fastify": "5.3.3",
     "fastify-cli": "7.4.0",
+    "grpc": "^1.24.11",
     "ts-node": "10.9.2",
     "typescript": "^5.8.3",
     "zod": "3.24.4"

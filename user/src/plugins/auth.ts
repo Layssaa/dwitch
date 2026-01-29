@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import axios from "axios";
 import { handlerError } from "../error/handler";
 import { UnauthorizedError } from "../error";
+import { authService } from "../services/auth.service";
 
 async function verifyAuth(request: FastifyRequest, reply: FastifyReply) {
   const authHeader = request.headers.authorization;
@@ -13,14 +13,7 @@ async function verifyAuth(request: FastifyRequest, reply: FastifyReply) {
   const token = authHeader.split(" ")[1];
 
   try {
-    const response = await axios.get(
-      `${process.env.API_AUTH_URL}/auth/validate-token`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await authService(token);
 
     request.user = { userId: response.data.userId };
   } catch (error) {
