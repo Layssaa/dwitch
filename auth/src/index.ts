@@ -24,7 +24,7 @@ app.register(authRouters, {
   prefix: "/auth",
 });
 
-const PORT = (process.env.PORT as unknown as number) ?? 5000 
+const PORT = (process.env.PORT as unknown as number) ?? 5000;
 const start = async () => {
   try {
     await app.listen({ port: PORT });
@@ -36,3 +36,43 @@ const start = async () => {
 };
 
 start().catch(console.error);
+
+import * as grpc from "@grpc/grpc-js";
+import * as protoLoader from "@grpc/proto-loader";
+import { validateTokenController } from "./controllers/validate-token.controller";
+
+const packageDefinition = protoLoader.loadSync("../proto/auth.proto", {
+  keepCase: true,
+  longs: String,
+  enums: String,
+  defaults: true,
+  oneofs: true,
+});
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition) as any;
+const auth = protoDescriptor.auth;
+
+function getServer() {
+  const serverGRPC = new grpc.Server();
+
+  serverGRPC.addService(auth.AuthService.service, {
+    validateAuthToken: (
+      call: any,
+      callback: (err: any, response: any) => any,
+    ) => {
+      callback(null, validateTokenController(call.request.token));
+    },
+  });
+
+  return serverGRPC;
+}
+
+const serverGRPC = getServer();
+
+serverGRPC.bindAsync(
+  "0.0.0.0:50051",
+  grpc.ServerCredentials.createInsecure(),
+  () => {
+    console.log("gRPC server running at 0.0.0.0:50051");
+  },
+);

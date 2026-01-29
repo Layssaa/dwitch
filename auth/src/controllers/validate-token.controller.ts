@@ -6,20 +6,14 @@ import { UnauthorizedError } from "../error";
 import { context, trace } from "@opentelemetry/api";
 import { handleSendPayload } from "../lib/telemetry/payload";
 
-export async function validateTokenController(
-  req: FastifyRequest,
-  rep: FastifyReply
-) {
+export async function validateTokenController(token: string) {
   const span = trace.getSpan(context.active());
-
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-
     if (!token) {
       throw new UnauthorizedError("Token not found");
     }
 
-    const { userId } =await validateTokenService({ token });
+    const { userId } = await validateTokenService({ token });
 
     const response = {
       message: "User authenticated successfully",
@@ -27,12 +21,15 @@ export async function validateTokenController(
     };
 
     handleSendPayload({ span, payload: response });
-    return rep.status(SuccessCodes.SUCCESS).send(response);
+    return response;
   } catch (error) {
     console.error(error);
 
     const errorHandled = handlerError(error as Error, "ErrorValidateToken");
     handleSendPayload({ span, payload: errorHandled });
-    return rep.status(errorHandled.statusCode).send(errorHandled);
+    return {
+      message: errorHandled.message,
+      userId: null,
+    };
   }
 }

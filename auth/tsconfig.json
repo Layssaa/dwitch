@@ -11,10 +11,15 @@
   },
   "baseUrl": ".",
   "paths": {
-    "@dwitch/db-client": ["packages/db-client/src"],
-    "@dwitch/errors": ["packages/errors/src"],
+    "@dwitch/db-client": ["../packages/db-client/src"],
+    "@dwitch/errors": ["../packages/errors/src"],
     "@validators/*": ["src/validators/*"]
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "../packages/errors/src",
+    "../packages/db-client/src",
+    "../proto"
+  ],
   "exclude": ["dist"]
 }
